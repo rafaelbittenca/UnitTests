@@ -4,6 +4,18 @@ namespace UnitTests.Core
 {
 	public class StringCalculator
 	{
+		private readonly IStore _store;
+
+
+		//public StringCalculator()
+		//{
+		//}
+
+		public StringCalculator(IStore store)
+		{
+			_store = store;
+		}
+
 		public int Add(string inputValue)
 		{
 
@@ -14,6 +26,11 @@ namespace UnitTests.Core
 			foreach(var number in numbers)
 			{
 				total += TryparseToInteger(number);
+			}
+			if (_store != null)
+			{
+				if (IsPrime(total))
+					_store.Save(total);  
 			}
 			return total;
 		}
@@ -26,6 +43,17 @@ namespace UnitTests.Core
 				throw new ArgumentException("Input format was incorrect");
 			}
 			return dest;
+		}
+
+		private bool IsPrime(int number)
+		{
+			if (number == 2) return true;
+			if (number % 2 == 0) return false;
+			for (int i = 3; i <= (int)(Math.Sqrt(number)); i += 2)
+			{
+				if (number % i == 0) return false;
+			}
+			return true;
 		}
 	}
 }
