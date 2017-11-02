@@ -8,10 +8,10 @@ namespace UnitTests
 {
 	public class CollectionArtistRepositoryTest
 	{
-		
+		//constructor
 		public CollectionArtistRepositoryTest()
 		{
-			// create some mock products to play with
+			// create some mock artists to play with
 			IList<Artist> artists = new List<Artist>
 			{
 			  new Artist { Id = 1, Name = "Eric" },
@@ -73,18 +73,18 @@ namespace UnitTests
 		public TestContext TestContext { get; set; }
 
 		/// <summary>
-		/// Our Mock Products Repository for use in testing
+		/// Our Mock Artists Repository for use in testing
 		/// </summary>
 		public readonly IArtistRepository MockArtistRepository;
 
 		[Test]
 		public void CanReturnArtistById()
 		{
-			// Try finding a product by id
+			// Try finding a artist by id
 			Artist testArtist = this.MockArtistRepository.FindById(2);
 
 			Assert.IsNotNull(testArtist); // Test if null
-			Assert.AreEqual("John", testArtist.Name); // Verify it is the right product
+			Assert.AreEqual("John", testArtist.Name); // Verify it is the right artist
 		}
 
 
@@ -131,9 +131,9 @@ namespace UnitTests
 		}
 
 		[Test]
-		public void CanUpdateProduct()
+		public void CanUpdateArtist()
 		{
-			// Find a product by id
+			// Find a artist by id
 			Artist testArtist = this.MockArtistRepository.FindById(1);
 
 			// Change one of its properties
